@@ -106,7 +106,8 @@ export default async function updateInventory({ container }: ExecArgs) {
     for (const level of existingLevels) {
       if (level.stocked_quantity === 0) {
         await inventoryService.updateInventoryLevels([{
-          id: level.id,
+          inventory_item_id: level.inventory_item_id,
+          location_id: level.location_id,
           stocked_quantity: 1000,
         }]);
       }

@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: cova-backend
+    env: node
+    region: singapore  # Gần Việt Nam nhất
+    plan: starter
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false  # Sẽ được set thủ công
+      - key: STORE_CORS
+        sync: false
+      - key: ADMIN_CORS
+        sync: false
+      - key: AUTH_CORS
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: COOKIE_SECRET
+        generateValue: true
+      - key: REDIS_URL
+        sync: false  # Optional - nếu dùng Redis
